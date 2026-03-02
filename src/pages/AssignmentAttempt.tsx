@@ -95,7 +95,9 @@ export default function AssignmentAttempt() {
       </header>
 
       <div className="workspace-container">
+
         {/* Left Panel: Context */}
+        
         <section className="context-panel">
           <div className="panel-section question-section">
             <h3>Question</h3>
