@@ -1,0 +1,31 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-family;
+  color: $text-dark;
+  background-color: $bg-light;
+  line-height: 1.5;
+}
+
+// BEM Blocks
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.MainContent {
+  flex: 1;
+  padding: 1rem;
+  
+  @include respond-to(tablet) {
+    padding: 2rem;
+  }
+}

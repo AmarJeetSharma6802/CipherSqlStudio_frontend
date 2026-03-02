@@ -1,0 +1,11 @@
+$primary-color: #3b82f6;
+
+.home {
+  text-align: center;
+  padding: 2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  h1 {
+    color: $primary-color;
+  }
+}

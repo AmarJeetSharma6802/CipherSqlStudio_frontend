@@ -1,0 +1,112 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.assignment-list-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h1 {
+      font-size: 2.5rem;
+      color: $text-dark;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: #6b7280;
+      font-size: 1.125rem;
+    }
+  }
+
+  .loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: $primary-color;
+  }
+
+  .assignments-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    @include respond-to(tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to(desktop) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .assignment-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+
+      h2 {
+        font-size: 1.25rem;
+        margin: 0;
+        color: $text-dark;
+      }
+
+      .difficulty {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+
+        &.easy { background-color: #d1fae5; color: #065f46; }
+        &.medium { background-color: #fef3c7; color: #92400e; }
+        &.hard { background-color: #fee2e2; color: #991b1b; }
+      }
+    }
+
+    .description {
+      flex-grow: 1;
+      color: #4b5563;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .btn-attempt {
+      @include btn-base;
+      background-color: $primary-color;
+      color: white;
+      width: 100%;
+      text-align: center;
+      padding: 0.75rem;
+
+      &:hover {
+        background-color: $primary-hover;
+      }
+    }
+  }
+
+  .no-assignments {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    background: #f9fafb;
+    border-radius: 8px;
+    color: #6b7280;
+  }
+}

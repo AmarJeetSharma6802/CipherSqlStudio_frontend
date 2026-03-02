@@ -1,0 +1,242 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.assignment-attempt-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 1.5rem;
+    color: $primary-color;
+  }
+
+  .attempt-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    border-bottom: 1px solid $border-color;
+    
+    .btn-back {
+      @include btn-base;
+      background: transparent;
+      color: $text-dark;
+      padding: 0.5rem;
+      &:hover { background: $bg-light; }
+    }
+
+    h2 {
+      margin: 0;
+      flex-grow: 1;
+      font-size: 1.25rem;
+    }
+
+    .difficulty {
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      &.easy { background-color: #d1fae5; color: #065f46; }
+      &.medium { background-color: #fef3c7; color: #92400e; }
+      &.hard { background-color: #fee2e2; color: #991b1b; }
+    }
+  }
+
+  .workspace-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+
+    @include respond-to(desktop) {
+      flex-direction: row;
+    }
+  }
+
+  /* Left Panel: Context */
+  .context-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-right: 1px solid $border-color;
+    overflow-y: auto;
+    
+    @include respond-to(desktop) {
+      max-width: 35%;
+    }
+
+    .panel-section {
+      padding: 1.5rem;
+      border-bottom: 1px solid $border-color;
+
+      h3 {
+        margin-bottom: 0.75rem;
+        font-size: 1.1rem;
+        color: $text-dark;
+      }
+    }
+
+    .question-section p {
+      color: #374151;
+      line-height: 1.6;
+    }
+
+    .schema-section .code-viewer {
+      background: $bg-dark;
+      color: $text-light;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-family: monospace;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      max-height: 300px;
+      overflow-y: auto;
+
+      code {
+        white-space: pre-wrap;
+      }
+    }
+  }
+
+  /* Right Panel: Editor & Results */
+  .editor-panel {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    background: #fafafa;
+    overflow-y: auto;
+
+    .editor-container {
+      border-bottom: 1px solid $border-color;
+    }
+
+    .actions-bar {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      background: white;
+      border-bottom: 1px solid $border-color;
+
+      button {
+        @include btn-base;
+        font-size: 0.9rem;
+      }
+
+      .btn-primary {
+        background: $primary-color;
+        color: white;
+        &:hover { background: $primary-hover; }
+      }
+
+      .btn-secondary {
+        background: #f59e0b;
+        color: white;
+        &:hover { background: #d97706; }
+      }
+    }
+
+    .hint-box {
+      margin: 1rem;
+      padding: 1rem;
+      background: #e0f2fe;
+      border-left: 4px solid #0284c7;
+      border-radius: 4px;
+      position: relative;
+
+      h4 {
+        color: #0369a1;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        color: #0c4a6e;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background: transparent;
+        border: none;
+        color: #0284c7;
+        cursor: pointer;
+        font-size: 0.8rem;
+        &:hover { text-decoration: underline; }
+      }
+    }
+
+    .results-container {
+      padding: 1.5rem;
+      flex: 1;
+
+      h3 {
+        margin-bottom: 1rem;
+      }
+
+      .error-message {
+        padding: 1rem;
+        background: #fee2e2;
+        color: $error-color;
+        border-radius: 4px;
+        font-family: monospace;
+      }
+
+      .placeholder {
+        color: #9ca3af;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .table-responsive {
+        overflow-x: auto;
+        border: 1px solid $border-color;
+        border-radius: 4px;
+        background: white;
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 0.875rem;
+
+          th, td {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid $border-color;
+          }
+
+          th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #475569;
+          }
+
+          tr:last-child td {
+            border-bottom: none;
+          }
+
+          tr:nth-child(even) {
+            background-color: #f8fafc;
+          }
+        }
+
+        .row-count {
+          padding: 0.5rem 1rem;
+          background: #f1f5f9;
+          font-size: 0.75rem;
+          color: #64748b;
+          text-align: right;
+        }
+      }
+    }
+  }
+}
